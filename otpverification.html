@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OTP Form</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #5869fe;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" style="text-align: center;">
+        <h2>OTP Verification</h2>
+        <button onclick="generateRandom4DigitNumber()">Get OTP</button>
+        <h5>please enter OTP sent on your Mobile</h5>
+
+        <p id="otpDisplay"></p> 
+
+        <h2>Enter OTP</h2>
+        <div>
+            <input type="text" class="otp-input" id="otp1" maxlength="1">
+            <input type="text" class="otp-input" id="otp2" maxlength="1">
+            <input type="text" class="otp-input" id="otp3" maxlength="1">
+            <input type="text" class="otp-input" id="otp4" maxlength="1">
+        </div>
+        <button onclick="verifyOTP()">Submit</button>
+    </div>
+    <script>
+        let randomNumber;
+
+        function generateRandom4DigitNumber() {
+            randomNumber = Math.floor(Math.random() * 9000) + 1000;
+            document.getElementById("otpDisplay").textContent = "Generated OTP: " + randomNumber; 
+        }
+
+        function verifyOTP() {
+            const otp1 = document.getElementById("otp1").value;
+            const otp2 = document.getElementById("otp2").value;
+            const otp3 = document.getElementById("otp3").value;
+            const otp4 = document.getElementById("otp4").value;
+
+            const enteredOTP = otp1 + otp2 + otp3 + otp4;
+
+            if (enteredOTP === randomNumber.toString()) {
+                // Redirect to the next page or perform other actions
+               // window.open("#", "_blank"); 
+               alert("log in successfully")
+
+            } else {
+                alert("Invalid OTP.");
+            }
+        }
+    </script>
+
+</body>
+</html>
